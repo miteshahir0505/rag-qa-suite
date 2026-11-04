@@ -1,0 +1,15 @@
+{
+  "writerModel": "openai/gpt-oss-20b",
+  "scenario": "only the first piece given to the writer",
+  "question": "What happens if I try to buy something that is sold out?",
+  "pieces": [
+    {
+      "source": "checkout-prd.md",
+      "section": "Failed payments",
+      "text": "If a payment fails, the cart is kept for 24 hours so the customer can try again. The customer must see a clear message that explains why the payment failed."
+    }
+  ],
+  "answer": "The documents do not cover this. If a payment fails, the cart is kept for 24 hours so the customer can try again.",
+  "status": "ok",
+  "extraAfterRefusal": "If a payment fails, the cart is kept for 24 hours so the customer can try again."
+}

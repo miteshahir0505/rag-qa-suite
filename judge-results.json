@@ -1,0 +1,229 @@
+{
+  "judgeModel": "openai/gpt-oss-120b",
+  "trusted": true,
+  "planted": [
+    {
+      "label": "good answer",
+      "answer": "Up to 10 units of one item.",
+      "expected": "SUPPORTED",
+      "judgeVerdict": "SUPPORTED",
+      "reason": "The answer states the limit of 10 units per item, which is directly given in Piece 1.",
+      "correct": true
+    },
+    {
+      "label": "wrong number",
+      "answer": "Up to 20 units of one item.",
+      "expected": "NOT SUPPORTED",
+      "judgeVerdict": "NOT SUPPORTED",
+      "reason": "The documents state a maximum of 10 units per item, but the answer claims 20 units.",
+      "correct": true
+    },
+    {
+      "label": "correct fact plus an invented one",
+      "answer": "Up to 10 units of one item, and orders ship free.",
+      "expected": "NOT SUPPORTED",
+      "judgeVerdict": "NOT SUPPORTED",
+      "reason": "The answer includes a claim about free shipping that is not mentioned in any of the provided document pieces.",
+      "correct": true
+    },
+    {
+      "label": "good answer with a second correct fact",
+      "answer": "The reset link works for 1 hour and can be used only once.",
+      "expected": "SUPPORTED",
+      "judgeVerdict": "SUPPORTED",
+      "reason": "The answer directly states the link validity and single-use limit as described in Piece 1.",
+      "correct": true
+    }
+  ],
+  "results": [
+    {
+      "set": "Main run (refusal rule present)",
+      "question": "How many of the same product can I put in my basket?",
+      "answer": "You can add up to 10 units of the same product to your basket.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The answer states the 10‑unit limit, which is directly given in the documents.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Main run (refusal rule present)",
+      "question": "How long do I have to wait after typing the wrong password too many times?",
+      "answer": "You have to wait 15 minutes.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The answer states a 15‑minute wait, which is exactly the lockout duration described in Piece 1.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Main run (refusal rule present)",
+      "question": "How long is the link to change my password valid?",
+      "answer": "The password reset link is valid for 1 hour.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The answer states the link is valid for 1 hour, which is directly given in Piece 1.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Main run (refusal rule present)",
+      "question": "What happens if I add the same item again and go over the limit?",
+      "answer": "If you add the same item again and the total would exceed the 10‑unit limit, the quantity is capped at 10 and the customer sees a message explaining the limit.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The answer accurately reflects the rule that the quantity is capped at 10 and a message is shown, as stated in Piece 1.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Main run (refusal rule present)",
+      "question": "What happens if I try to buy something that is sold out?",
+      "answer": "If an item is sold out, it cannot be added to your cart. The Add to Cart button is replaced by a message that says the item is unavailable.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The answer directly reflects the statements in Piece 2 about out‑of‑stock items.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Main run (refusal rule present)",
+      "question": "Can I log in with my fingerprint?",
+      "answer": "The documents do not cover this. Registered customers must be able to sign in to see their orders and saved details.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "MISLEADING",
+      "reason": "The answer correctly states that the documents do not address fingerprint login and accurately repeats a documented requirement, but the added statement about sign‑in capability does not help answer the fingerprint question.",
+      "verdict": "WARNING"
+    },
+    {
+      "set": "Main run (refusal rule present)",
+      "question": "Does the API support PUT requests to change an order?",
+      "answer": "The documents do not cover this. An order can only be cancelled before it is shipped. After that, the API returns status 409.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "MISLEADING",
+      "reason": "All statements are found in the pieces, but the extra cancellation detail does not address the PUT request question.",
+      "verdict": "WARNING"
+    },
+    {
+      "set": "Main run (refusal rule present)",
+      "question": "If the internet goes off while I pay, will the order still be processed?",
+      "answer": "The documents do not cover this. If a payment fails, the cart is kept for 24 hours so the customer can try again.",
+      "judgeVerdict": "NOT SUPPORTED",
+      "extra": "RELEVANT",
+      "reason": "The answer incorrectly claims the documents do not cover the issue, while the documents do address failed payments.",
+      "verdict": "FAIL"
+    },
+    {
+      "set": "Main run (refusal rule present)",
+      "question": "Does the wishlist hold more than 50 items?",
+      "answer": "The documents do not cover this. A cart can hold at most 50 different items.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "MISLEADING",
+      "reason": "The answer correctly states the documents don’t address the wishlist, but adds unrelated cart limit information.",
+      "verdict": "WARNING"
+    },
+    {
+      "set": "Main run (refusal rule present)",
+      "question": "What is the capital of France?",
+      "answer": "The documents do not cover this.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The answer correctly states that the provided documents contain no information about the capital of France.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Scenario A (refusal rule removed)",
+      "question": "How many of the same product can I put in my basket?",
+      "answer": "You can add up to 10 units of the same product to your basket.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The answer states the 10‑unit limit, which is directly given in the documents.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Scenario A (refusal rule removed)",
+      "question": "How long do I have to wait after typing the wrong password too many times?",
+      "answer": "After five consecutive failed sign‑in attempts, your account is locked for 15 minutes. The system will display a message telling you exactly how long to wait.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The answer directly restates the lockout policy and message detail found in Piece 1.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Scenario A (refusal rule removed)",
+      "question": "How long is the link to change my password valid?",
+      "answer": "The password‑reset link is valid for 1 hour.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The answer states the link is valid for 1 hour, which is directly given in Piece 1.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Scenario A (refusal rule removed)",
+      "question": "What happens if I add the same item again and go over the limit?",
+      "answer": "If you add the same item again and the total would exceed 10 units, the cart caps the quantity at 10 and shows a message explaining that the 10‑unit limit has been reached.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The answer accurately reflects the piece stating that exceeding 10 units caps the quantity at 10 and shows a limit message.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Scenario A (refusal rule removed)",
+      "question": "What happens if I try to buy something that is sold out?",
+      "answer": "If an item is sold out, you cannot add it to your cart. The Add to Cart button is replaced with a message that the item is unavailable.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The answer accurately reflects the document stating out‑of‑stock items cannot be added to the cart and the button is replaced with an unavailable message.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Scenario A (refusal rule removed)",
+      "question": "Can I log in with my fingerprint?",
+      "answer": "The documents do not mention fingerprint login, so it is not supported.",
+      "judgeVerdict": "NOT SUPPORTED",
+      "extra": "RELEVANT",
+      "reason": "The answer asserts that fingerprint login is not supported, a conclusion not directly stated in the provided pieces.",
+      "verdict": "FAIL"
+    },
+    {
+      "set": "Scenario A (refusal rule removed)",
+      "question": "Does the API support PUT requests to change an order?",
+      "answer": "No, the provided API documentation does not mention support for PUT requests to modify an order.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The documents only describe GET, POST, and DELETE endpoints and do not mention any PUT support, so the answer correctly states that PUT is not documented.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Scenario A (refusal rule removed)",
+      "question": "If the internet goes off while I pay, will the order still be processed?",
+      "answer": "The documents do not specify what happens if the internet goes off while you are making a payment.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The provided documents contain no information about internet outages during payment, so the answer correctly states that the scenario is not specified.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Scenario A (refusal rule removed)",
+      "question": "Does the wishlist hold more than 50 items?",
+      "answer": "The provided documents do not mention any limits for a wishlist.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The answer correctly states that the given documents contain no information about wishlist limits.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Scenario A (refusal rule removed)",
+      "question": "What is the capital of France?",
+      "answer": "I’m sorry, but I don’t have that information.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "NONE",
+      "reason": "The documents contain no information about the capital of France, so the answer correctly states lack of information.",
+      "verdict": "PASS"
+    },
+    {
+      "set": "Scenario B (first piece only)",
+      "question": "What happens if I try to buy something that is sold out?",
+      "answer": "The documents do not cover this. If a payment fails, the cart is kept for 24 hours so the customer can try again.",
+      "judgeVerdict": "SUPPORTED",
+      "extra": "MISLEADING",
+      "reason": "The answer's statements are all in the document, but the added payment‑failure information is unrelated to the sold‑out question.",
+      "verdict": "WARNING"
+    }
+  ]
+}
