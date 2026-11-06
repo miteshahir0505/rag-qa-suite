@@ -112,7 +112,7 @@ The judge is an AI too, so it was tested first on 4 planted answers whose correc
 
 ## How to run it
 
-You need Node.js and a free [Groq](https://console.groq.com/) account (only the writer and judge scripts need the key).
+You need Node.js 18 or newer (this was built and tested on Node 24). Steps 3 and 4 run on your own PC and need no key. Only the writer and judge scripts (step 5) use the free [Groq](https://console.groq.com/) API, so you need a free Groq account for them.
 
 1. Install the packages:
 
@@ -153,6 +153,8 @@ You need Node.js and a free [Groq](https://console.groq.com/) account (only the 
    npx tsx faithfulness-judge.ts
    ```
 
+   Note: this step replaces the saved files `writer-answers*.json` and `judge-results.json`. The AI can answer differently each time, so your results may differ a little from the ones described above.
+
    Run the writer scripts before the judge: the judge reads the answer files they save.
 
 ## What is in the repo
@@ -165,6 +167,7 @@ You need Node.js and a free [Groq](https://console.groq.com/) account (only the 
 | `chunk-by-section.ts`, `chunk-fixed-size.ts` | Show the pieces each way of cutting produces |
 | `build-vector-store.ts`, `build-vector-store-fixed.ts` | Build the searchable stores and check them |
 | `check-shipping-split.ts` | Checks whether any key fact is split between two pieces |
+| `hello.ts` | Smoke test for the Groq key: checks the key is loaded and the AI answers |
 | `embed-hello.ts`, `embedding-check.ts` | Smoke test and quality check of the embedding model |
 | `search-store.ts` | Ask the store a question from the command line |
 | `retrieval-tests.ts`, `compare-retrieval.ts`, `compare-titled.ts`, `shipping-retrieval-tests.ts` | Search tests and comparisons |
